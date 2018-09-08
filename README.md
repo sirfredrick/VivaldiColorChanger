@@ -81,7 +81,9 @@ To run the Installer manually, Build the solution and copy the output of the `In
 
 You can now run the Installer directly.
 
-To debug just the service, we have [Topshelf](http://topshelf-project.com/) this allows us to run the Windows Service as a Console app in the debugger!
+To debug just the service, we have [Topshelf](http://topshelf-project.com/) this allows us to run the Windows Service as a Console app in the debugger! 
+Make sure that you copy the `GLedApi.dll`, `ycc.dll`, and `layout.ini` to the `\GLedAPIDotNet\` folder.
+Also, change `config.ini` to have the right subscribe key. Finally, the `ColorChangerService.exe` only works in `x86`, not `x86_64`.
 
 To manually install the Vivaldi Mod, add the `custom.js` and `pubnub.js` files to the `Vivaldi\Application\<Version #>\resources\vivaldi` and add 
 ```shell
