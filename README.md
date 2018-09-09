@@ -1,6 +1,8 @@
 # Vivaldi Color Changer Service
 >  Vivaldi Browser Mod and CMD Installer included!
 
+[![Build status](https://ci.appveyor.com/api/projects/status/bylj0shkxjhhed2m?svg=true)](https://ci.appveyor.com/project/sirfredrick231/vivaldicolorchanger)
+
 Vivaldi Color Changer Service aims to bring the functionality of the changing accent tab color to your RGB Motherboard LEDs. This project has two components a [Vivaldi Browser](https://vivaldi.com/) Mod that grabs the accent color and posts it to [Pubnub](https://www.pubnub.com/) and a Windows Service that talks to the motherboard. Both of these projects are written in C# targeting .NET 4.6.1. 
 
 ## Features
