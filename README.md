@@ -21,6 +21,7 @@ Make a Pubnub account by going to the [www.pubnub.com](https://www.pubnub.com/) 
 Once you are logged in create a new app and then copy the `Publish and Subscribe Keys` for later.
 
 Download the project binaries and the required RGB Fusion API files:
+* [Binaries](https://github.com/sirfredrick231/VivaldiColorChanger/releases)
 * [B17.0926.1.zip](https://www.gigabyte.com/WebPage/332/images/B17.0926.1.zip)
 
 Move the RGB Fusion files `GLedApi.dll`, `ycc.dll`, and `layout.ini` to the ColorChangerService Folder.
