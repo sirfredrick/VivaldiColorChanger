@@ -1,9 +1,9 @@
 # Vivaldi Color Changer Service
 >  Vivaldi Browser Mod and CMD Installer included!
 
-[![Build status](https://ci.appveyor.com/api/projects/status/bylj0shkxjhhed2m?svg=true)](https://ci.appveyor.com/project/sirfredrick231/vivaldicolorchanger)
+[![Build status](https://ci.appveyor.com/api/projects/status/bylj0shkxjhhed2m/branch/master?svg=true)](https://ci.appveyor.com/project/sirfredrick231/vivaldicolorchanger/branch/master)
 
-Vivaldi Color Changer Service aims to bring the functionality of the changing accent tab color to your RGB Motherboard LEDs. This project has two components a [Vivaldi Browser](https://vivaldi.com/) Mod that grabs the accent color and posts it to [Pubnub](https://www.pubnub.com/) and a Windows Service that talks to the motherboard. Both of these projects are written in C# targeting .NET 4.6.1. 
+Vivaldi Color Changer Service aims to bring the functionality of the changing accent tab color to your RGB Motherboard LEDs. This project has two components a [Vivaldi Browser](https://vivaldi.com/) Mod that grabs the accent color and posts it to [Pubnub](https://www.pubnub.com/), and a Windows Service that talks to the motherboard. The mod is written in JavaScript while the Service, and Installer are written in C# targeting .NET 4.6.1. 
 
 ## Features
 So what can this project do?
@@ -54,7 +54,7 @@ y
 Please enter the path to your Vivaldi Folder.
 <Path to Vivaldi Program Folder>
 ```
-The path is usually ``C:\Program Files\Vivaldi`` or ``C:\Program Files (x86)\Vivaldi``
+The path is usually `C:\Program Files\Vivaldi` or `C:\Program Files (x86)\Vivaldi`
 
 Once you are done with that the installation should now be done! Wasn't that easier than you thought?
 
@@ -111,6 +111,8 @@ Before publish please use default Visual Studio 2017 formatting by clicking ctr+
 If you'd like to contribute, please fork the repository and use a feature
 branch. Pull requests are warmly welcome.
 
+See `CONTRIBUTING.md` for the specifics.
+
 ## Links
 
 - Repository: https://github.com/sirfredrick231/VivaldiColorChanger
@@ -123,7 +125,9 @@ branch. Pull requests are warmly welcome.
 ## Copyright
 GLedAPIDotNET from RGB-Fusion-Tool Copyright © 2018 Tyler Szabo
 
-Installer, ColorChangerService, and custom.js © 2018 Jeffrey Tucker
+Installer, ColorChangerService, and custom.js Copyright © 2018 Jeffrey Tucker
+
+pubnub.js Copyright © 2013 PubNub Inc.
 
 ## Licensing
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
