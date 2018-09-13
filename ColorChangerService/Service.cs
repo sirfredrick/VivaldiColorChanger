@@ -1,4 +1,4 @@
-// Copyright (C) 2018 Jeffrey Tucker
+﻿// Copyright (C) 2018 Jeffrey Tucker
 //
 // This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 //
@@ -18,8 +18,6 @@ namespace ColorChangerService
             if (!EventLog.SourceExists("Color Changer Service"))
             {
                 EventLog.CreateEventSource("Color Changer Service", "Application Log");
-                Console.WriteLine("CreatedEventSource");
-                Console.WriteLine("Exiting, execute the application a second time to use the source.");
                 return;
             }
 
