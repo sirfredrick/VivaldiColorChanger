@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2018 Tyler Szabo
+// Copyright (C) 2018 Tyler Szabo
 //
 // This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 //
@@ -12,7 +12,7 @@ using System.Collections.Generic;
 
 public class LazyMotherboard : IRGBFusionMotherboard
 {
-    Lazy<RGBFusionMotherboard> motherboard = new Lazy<RGBFusionMotherboard>();
+    readonly Lazy<RGBFusionMotherboard> motherboard = new Lazy<RGBFusionMotherboard>();
     public IMotherboardLedLayout Layout => motherboard.Value.Layout;
     public IMotherboardLedSettings LedSettings => motherboard.Value.LedSettings;
     public void Set(params int[] divisions) => motherboard.Value.Set(divisions);
