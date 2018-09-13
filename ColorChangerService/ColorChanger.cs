@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2018 Jeffrey Tucker
+// Copyright (C) 2018 Jeffrey Tucker
 //
 // This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 //
@@ -22,6 +22,7 @@ namespace ColorChangerService
         EventLog log;
         IRGBFusionMotherboard motherboardLEDs = new LazyMotherboard();
         Pubnub pubnub;
+        string[] channel = { "Vivaldi RGB" };
 
 
         public ColorChanger(EventLog log)
@@ -96,16 +97,14 @@ namespace ColorChangerService
                     }));
 
             pubnub.Subscribe<string>()
-    .Channels(new string[] {
-            "Vivaldi RGB"
-    })
+    .Channels(channel)
     .Execute();
         }
 
         public void Stop()
         {
             log.WriteEntry("On Stop", EventLogEntryType.Information, 3, 0);
-            pubnub.Unsubscribe<String>().Channels(new string[] { "Vivaldi RGB" }).Execute();
+            pubnub.Unsubscribe<String>().Channels(channel).Execute();
         }
 
         public void ChangeColor(Color color)
