@@ -22,7 +22,7 @@ namespace ColorChangerService
         readonly EventLog log;
         readonly IRGBFusionMotherboard motherboardLEDs = new LazyMotherboard();
         readonly Pubnub pubnub;
-        string[] channel = { "Vivaldi RGB" };
+        readonly string[] channel = { "Vivaldi RGB" };
 
 
         public ColorChanger(EventLog log)
