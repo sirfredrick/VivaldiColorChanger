@@ -144,24 +144,20 @@ namespace Installer
                 switch (answer)
                 {
                     case "y":
-                        installExit = true;
-                        wasInstalled = install();
-                        break;
                     case "Y":
                         installExit = true;
-                        wasInstalled = install();
+                        wasInstalled = installService();
                         break;
                     case "n":
-                        installExit = true;
-                        break;
                     case "N":
                         installExit = true;
                         break;
                     case "":
                         installExit = true;
-                        wasInstalled = install();
+                        wasInstalled = installService();
                         break;
                     default:
+                        installExit = false;
                         break;
                 }
             }
@@ -175,24 +171,18 @@ namespace Installer
                 switch (answer)
                 {
                     case "y":
-                        startExit = true;
-                        wasStarted = start();
-                        break;
                     case "Y":
                         startExit = true;
-                        wasStarted = start();
+                        wasStarted = startService();
                         break;
                     case "n":
-                        startExit = true;
-                        wasStarted = false;
-                        break;
                     case "N":
                         startExit = true;
                         wasStarted = false;
                         break;
                     case "":
                         startExit = true;
-                        wasStarted = start();
+                        wasStarted = startService();
                         break;
                     default:
                         break;
@@ -245,22 +235,17 @@ namespace Installer
                 switch (answer)
                 {
                     case "y":
-                        uninstallExit = true;
-                        wasUninstalled = uninstall();
-                        break;
                     case "Y":
                         uninstallExit = true;
-                        wasUninstalled = uninstall();
+                        wasUninstalled = uninstallService();
                         break;
                     case "n":
-                        uninstallExit = true;
-                        break;
                     case "N":
                         uninstallExit = true;
                         break;
                     case "":
                         uninstallExit = true;
-                        wasUninstalled = uninstall();
+                        wasUninstalled = uninstallService();
                         break;
                     default:
                         isDefault = true;
@@ -295,15 +280,10 @@ namespace Installer
                 switch (answer)
                 {
                     case "y":
-                        vivaldiExit = true;
-                        break;
                     case "Y":
                         vivaldiExit = true;
                         break;
                     case "n":
-                        vivaldiExit = true;
-                        exit = true;
-                        break;
                     case "N":
                         vivaldiExit = true;
                         exit = true;
@@ -333,17 +313,12 @@ namespace Installer
                 switch (answer)
                 {
                     case "y":
-                        uninstallExit = true;
-                        wasUninstalled = deleteModFiles();
-                        break;
                     case "Y":
                         uninstallExit = true;
                         wasUninstalled = deleteModFiles();
                         break;
-                    case "n":
-                        uninstallExit = true;
-                        break;
                     case "N":
+                    case "n":
                         uninstallExit = true;
                         break;
                     case "":
