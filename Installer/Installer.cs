@@ -353,7 +353,8 @@ namespace Installer
                 }
                 catch (Exception e)
                 {
-
+                    Console.WriteLine("Path not found Error Code: ");
+                    Console.WriteLine(e);
                 }
             }
             return browserPath.Substring(0, browserPath.Length - 12);
