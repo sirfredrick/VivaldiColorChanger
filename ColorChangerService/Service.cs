@@ -11,15 +11,13 @@ using System.Diagnostics;
 
 namespace ColorChangerService
 {
-    class Service
+    static class Service
     {
         static void Main(string[] args)
         {
             if (!EventLog.SourceExists("Color Changer Service"))
             {
                 EventLog.CreateEventSource("Color Changer Service", "Application Log");
-                Console.WriteLine("CreatedEventSource");
-                Console.WriteLine("Exiting, execute the application a second time to use the source.");
                 return;
             }
 

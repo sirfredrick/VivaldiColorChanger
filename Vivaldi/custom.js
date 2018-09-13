@@ -1,8 +1,8 @@
 var firstTime = true;
-var colorOld = '';
+var colorOld = "";
 var pubnub = new PubNub({
-    subscribeKey: '<SubKey>', // always required
-    publishKey: '<PubKey>' // only required if publishing
+    subscribeKey: "<SubKey>", // always required
+    publishKey: "<PubKey>" // only required if publishing
 });
 setInterval(function wait() {
     var adr = document.querySelector(".toolbar-addressbar.toolbar");
@@ -13,27 +13,27 @@ setInterval(function wait() {
             firstTime = false;
             console.log("Subscribing..");
             pubnub.subscribe({
-                channels: ['Vivaldi RGB']
+                channels: ["Vivaldi RGB"]
             });
         }
-        if (color != colorOld) {
-            console.log('Color = ' + color);
+        if (color !== colorOld) {
+            console.log("Color = " + color);
             pubnub.publish(
                 {
                     message: {
-                        message: color + '',
+                        message: color + "",
                     },
-                    channel: 'Vivaldi RGB'
+                    channel: "Vivaldi RGB"
                 },
                 function (status, response) {
                     if (status.error) {
-                        console.log(status)
+                        console.log(status);
                     } else {
-                        console.log("message Published w/ timetoken", response.timetoken)
+                        console.log("message Published w/ timetoken", response.timetoken);
                     }
                 }
             );
-            colorOld = color
+            colorOld = color;
         }
     }
 }, 3000);

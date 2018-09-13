@@ -12,7 +12,7 @@ using System.Collections.Generic;
 
 public class LazyMotherboard : IRGBFusionMotherboard
 {
-    Lazy<RGBFusionMotherboard> motherboard = new Lazy<RGBFusionMotherboard>();
+    readonly Lazy<RGBFusionMotherboard> motherboard = new Lazy<RGBFusionMotherboard>();
     public IMotherboardLedLayout Layout => motherboard.Value.Layout;
     public IMotherboardLedSettings LedSettings => motherboard.Value.LedSettings;
     public void Set(params int[] divisions) => motherboard.Value.Set(divisions);

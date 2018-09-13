@@ -13,19 +13,19 @@ using System.Collections.Generic;
 
 namespace Installer
 {
-    class Installer
+    static class Installer
     {
-        static bool exit = false;
+        static bool exit;
         static string fullPath = System.Reflection.Assembly.GetEntryAssembly().Location;
         static string path = fullPath.Substring(0, fullPath.Length - 13);
 
         static void Main(string[] args)
         {
-            if (args.Length == 0)
+            if (args.Length == 0 || (!args[0].Equals("uninstall") && !args[0].Equals("Uninstall")))
             {
                 installer();
             }
-            else if (args[0] == "uninstall" || args[0] == "Uninstall")
+            else
             {
                 uninstaller();
                 reset("\\ColorChangerService\\config.ini",
@@ -34,10 +34,6 @@ namespace Installer
                     );
                 Console.WriteLine("Sub Key Reset in 'ColorChangerService\\config.ini'");
             }
-            else
-            {
-                installer();
-            }
             resetKeys();
             Console.WriteLine("");
             Console.WriteLine("Please restart vivaldi for the changes to take affect.");
@@ -45,43 +41,44 @@ namespace Installer
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
         }
-
+        //Main Installation Process
         static void installer()
         {
             while (!exit)
             {
                 Console.WriteLine("Welcome to the Color Changer Service Console Installer.");
                 replaceKeys();
-                installService();
+                installSettings();
                 installVivaldiMod();
             }
         }
+        //Main Uninstall Process
         static void uninstaller()
         {
             while (!exit)
             {
                 Console.WriteLine("Welcome to the Color Changer Service Console Uninstaller.");
-                uninstallService();
+                uninstallSettings();
                 Console.WriteLine("Service Successfully Uninstalled!");
                 uninstallVivaldiMod();
                 Console.WriteLine("Vivaldi Mod Successfully Uninstalled!");
             }
         }
-
+        //Gets the PubNub Keys and replaces them in custom.js and config.ini
         static void replaceKeys()
         {
             string oldConfigText = "";
-            String SubKey = "";
-            String PubKey = "";
+            String subKey = "";
+            String pubKey = "";
             try
             {
                 Console.WriteLine("Please Copy and Paste your PubNub Subsribe Key Below.");
-                SubKey = Console.ReadLine();
+                subKey = Console.ReadLine();
                 Console.WriteLine("Please Copy and Paste your PubNub Publish Key Below.");
-                PubKey = Console.ReadLine();
+                pubKey = Console.ReadLine();
                 string text = File.ReadAllText(path + "\\ColorChangerService\\config.ini");
                 oldConfigText = text;
-                text = text.Replace("<SubKey>", SubKey);
+                text = text.Replace("<SubKey>", subKey);
                 File.WriteAllText(path + "\\ColorChangerService\\config.ini", text);
                 Console.WriteLine("Sub Key replaced in 'ColorChangerService\\config.ini'");
             }
@@ -95,12 +92,12 @@ namespace Installer
             string oldVivaldiText = "";
             try
             {
-                if (SubKey != "" && PubKey != "")
+                if (subKey != "" && pubKey != "")
                 {
                     string text = File.ReadAllText(path + "\\Vivaldi\\custom.js");
                     oldVivaldiText = text;
-                    text = text.Replace("<SubKey>", SubKey);
-                    text = text.Replace("<PubKey>", PubKey);
+                    text = text.Replace("<SubKey>", subKey);
+                    text = text.Replace("<PubKey>", pubKey);
                     File.WriteAllText(path + "\\Vivaldi\\custom.js", text);
                     Console.WriteLine("Pub and Sub Keys replaced in '\\Vivaldi\\custom.js'");
                 }
@@ -112,6 +109,7 @@ namespace Installer
                 exit = true;
             }
         }
+        //Resets PubNub Keys in custom.js and config.ini for next installer run
         static void resetKeys()
         {
             try
@@ -129,11 +127,13 @@ namespace Installer
             }
             Console.WriteLine("Pub and Sub Keys Reset in '\\Vivaldi\\custom.txt'");
         }
+        //Resets a file found in directory to the string data in oldText
         static void reset(string directory, string oldText)
         {
             File.WriteAllText(path + directory, oldText);
         }
-        static void installService()
+        //Asks questions about install settings
+        static void installSettings()
         {
             bool installExit = false;
             bool wasInstalled = false;
@@ -144,24 +144,20 @@ namespace Installer
                 switch (answer)
                 {
                     case "y":
-                        installExit = true;
-                        wasInstalled = install();
-                        break;
                     case "Y":
                         installExit = true;
-                        wasInstalled = install();
+                        wasInstalled = installService();
                         break;
                     case "n":
-                        installExit = true;
-                        break;
                     case "N":
                         installExit = true;
                         break;
                     case "":
                         installExit = true;
-                        wasInstalled = install();
+                        wasInstalled = installService();
                         break;
                     default:
+                        installExit = false;
                         break;
                 }
             }
@@ -175,24 +171,18 @@ namespace Installer
                 switch (answer)
                 {
                     case "y":
-                        startExit = true;
-                        wasStarted = start();
-                        break;
                     case "Y":
                         startExit = true;
-                        wasStarted = start();
+                        wasStarted = startService();
                         break;
                     case "n":
-                        startExit = true;
-                        wasStarted = false;
-                        break;
                     case "N":
                         startExit = true;
                         wasStarted = false;
                         break;
                     case "":
                         startExit = true;
-                        wasStarted = start();
+                        wasStarted = startService();
                         break;
                     default:
                         break;
@@ -208,7 +198,8 @@ namespace Installer
 
             }
         }
-        static bool start()
+        //Starts the ColorChangerService
+        static bool startService()
         {
             var proc = new Process();
             proc.StartInfo.FileName = path + "\\ColorChangerService\\ColorChangerService.exe";
@@ -219,7 +210,8 @@ namespace Installer
             proc.Close();
             return (exitCode == 0);
         }
-        static bool install()
+
+        static bool installService()
         {
             var proc = new Process();
             proc.StartInfo.FileName = path + "\\ColorChangerService\\ColorChangerService.exe";
@@ -230,8 +222,8 @@ namespace Installer
             proc.Close();
             return (exitCode == 0);
         }
-
-        static void uninstallService()
+        //Asks questions about uninstall settings
+        static void uninstallSettings()
         {
             bool uninstallExit = false;
             bool wasUninstalled = false;
@@ -243,22 +235,17 @@ namespace Installer
                 switch (answer)
                 {
                     case "y":
-                        uninstallExit = true;
-                        wasUninstalled = uninstall();
-                        break;
                     case "Y":
                         uninstallExit = true;
-                        wasUninstalled = uninstall();
+                        wasUninstalled = uninstallService();
                         break;
                     case "n":
-                        uninstallExit = true;
-                        break;
                     case "N":
                         uninstallExit = true;
                         break;
                     case "":
                         uninstallExit = true;
-                        wasUninstalled = uninstall();
+                        wasUninstalled = uninstallService();
                         break;
                     default:
                         isDefault = true;
@@ -270,7 +257,8 @@ namespace Installer
                 }
             }
         }
-        static bool uninstall()
+
+        static bool uninstallService()
         {
             var proc = new Process();
             proc.StartInfo.FileName = path + "\\ColorChangerService\\ColorChangerService.exe";
@@ -282,7 +270,6 @@ namespace Installer
             return (exitCode == 0);
         }
 
-
         static void installVivaldiMod()
         {
             bool vivaldiExit = false;
@@ -293,15 +280,10 @@ namespace Installer
                 switch (answer)
                 {
                     case "y":
-                        vivaldiExit = true;
-                        break;
                     case "Y":
                         vivaldiExit = true;
                         break;
                     case "n":
-                        vivaldiExit = true;
-                        exit = true;
-                        break;
                     case "N":
                         vivaldiExit = true;
                         exit = true;
@@ -331,17 +313,12 @@ namespace Installer
                 switch (answer)
                 {
                     case "y":
-                        uninstallExit = true;
-                        wasUninstalled = deleteModFiles();
-                        break;
                     case "Y":
                         uninstallExit = true;
                         wasUninstalled = deleteModFiles();
                         break;
-                    case "n":
-                        uninstallExit = true;
-                        break;
                     case "N":
+                    case "n":
                         uninstallExit = true;
                         break;
                     case "":
@@ -359,6 +336,7 @@ namespace Installer
             }
             exit = true;
         }
+        //Asks the user for the path to their Vivaldi Folder
         static String getVivaldiPath()
         {
             bool pathExit = false;
@@ -375,15 +353,18 @@ namespace Installer
                 }
                 catch (Exception e)
                 {
-
+                    Console.WriteLine("Path not found Error Code: ");
+                    Console.WriteLine(e);
                 }
             }
             return browserPath.Substring(0, browserPath.Length - 12);
         }
+        //Move necessary files to the Vivaldi Folder and appends text to browser.html
         static void moveVivaldiFiles(String vivaldiPath)
         {
             try
             {
+                //Checks to see if their is a backed-up version of browser.html
                 if (File.Exists(vivaldiPath + "\\browser.html") && !File.Exists(path + "Vivaldi\\backup\\browser.html"))
                 {
                     File.Copy(vivaldiPath + "\\browser.html", path + "Vivaldi\\backup\\browser.html");
@@ -393,16 +374,17 @@ namespace Installer
                 {
                     File.Copy(vivaldiPath + "\\browser.html", vivaldiPath + "\\browser.bak.html");
                 }
+                //Sets up an array of file names to be used later
                 String[] files = {
                     "\\browser.html",
                     "\\custom.js",
                     "\\pubnub.js"
                 };
-                bool firstRun = true;
+                bool isBrowserHtml = true;
                 foreach (String file in files)
                 {
 
-                    if (!firstRun)
+                    if (!isBrowserHtml)
                     {
                         if (File.Exists(vivaldiPath + file))
                         {
@@ -420,11 +402,13 @@ namespace Installer
                     }
                     else
                     {
+                        //Converts browser.html into a List<String> so that we can easily append text
                         String[] browserText = File.ReadAllLines(vivaldiPath + file);
                         List<String> browserList = browserText.OfType<String>().ToList();
+                        //If custom.js text already exists it will skip the custom.js line so it puts pubnub.js on top
                         int shift = 0;
                         List<String> toAdd = new List<String>();
-                        
+
                         if (!browserList.Exists(x => x.Trim() == "<script src=\"pubnub.js\"></script>"))
                         {
                             toAdd.Add("<script src=\"pubnub.js\"></script>");
@@ -434,7 +418,8 @@ namespace Installer
                         {
                             toAdd.Add("<script src=\"custom.js\"></script>");
                         }
-                        if (toAdd.Count > 1) {
+                        if (toAdd.Count > 1)
+                        {
                             shift = 0;
                         }
 
@@ -451,7 +436,7 @@ namespace Installer
                             Console.WriteLine("Could not modify browser.html Error code: ");
                             Console.WriteLine(e);
                         }
-                        firstRun = false;
+                        isBrowserHtml = false;
                     }
                 }
                 Console.WriteLine("Vivaldi Mod successfully installed!");
@@ -463,6 +448,7 @@ namespace Installer
             }
 
         }
+        //Deletes mod files from Vivaldi Folder and replaces browser.html with backup during uninstall
         static bool deleteModFiles()
         {
             bool isUninstalled = false;

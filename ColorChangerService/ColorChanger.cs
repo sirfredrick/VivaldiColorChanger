@@ -19,9 +19,10 @@ namespace ColorChangerService
 {
     public class ColorChanger
     {
-        EventLog log;
-        IRGBFusionMotherboard motherboardLEDs = new LazyMotherboard();
-        Pubnub pubnub;
+        readonly EventLog log;
+        readonly IRGBFusionMotherboard motherboardLEDs = new LazyMotherboard();
+        readonly Pubnub pubnub;
+        readonly string[] channel = { "Vivaldi RGB" };
 
 
         public ColorChanger(EventLog log)
@@ -66,15 +67,9 @@ namespace ColorChangerService
                     Console.WriteLine(tabColor);
                     ChangeColor(tabColor);
 
-
-
-                    if (message != null)
+                    if (message.Channel != null)
                     {
-
-                        if (message.Channel != null)
-                        {
-                            log.WriteEntry("Color: " + hexVal + " has been received through " + message.Channel + " channel.", EventLogEntryType.Information, 10, 0);
-                        }
+                        log.WriteEntry("Color: " + hexVal + " has been received through " + message.Channel + " channel.", EventLogEntryType.Information, 10, 0);
                     }
                 },
                 (pubnubObj, presence) => { },
@@ -96,16 +91,14 @@ namespace ColorChangerService
                     }));
 
             pubnub.Subscribe<string>()
-    .Channels(new string[] {
-            "Vivaldi RGB"
-    })
+    .Channels(channel)
     .Execute();
         }
 
         public void Stop()
         {
             log.WriteEntry("On Stop", EventLogEntryType.Information, 3, 0);
-            pubnub.Unsubscribe<String>().Channels(new string[] { "Vivaldi RGB" }).Execute();
+            pubnub.Unsubscribe<String>().Channels(channel).Execute();
         }
 
         public void ChangeColor(Color color)
