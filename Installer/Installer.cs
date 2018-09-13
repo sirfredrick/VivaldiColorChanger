@@ -145,16 +145,13 @@ namespace Installer
                 {
                     case "y":
                     case "Y":
+                    case "":
                         installExit = true;
                         wasInstalled = installService();
                         break;
                     case "n":
                     case "N":
                         installExit = true;
-                        break;
-                    case "":
-                        installExit = true;
-                        wasInstalled = installService();
                         break;
                     default:
                         installExit = false;
@@ -172,6 +169,7 @@ namespace Installer
                 {
                     case "y":
                     case "Y":
+                    case "":
                         startExit = true;
                         wasStarted = startService();
                         break;
@@ -179,10 +177,6 @@ namespace Installer
                     case "N":
                         startExit = true;
                         wasStarted = false;
-                        break;
-                    case "":
-                        startExit = true;
-                        wasStarted = startService();
                         break;
                     default:
                         break;
@@ -236,16 +230,13 @@ namespace Installer
                 {
                     case "y":
                     case "Y":
+                    case "":
                         uninstallExit = true;
                         wasUninstalled = uninstallService();
                         break;
                     case "n":
                     case "N":
                         uninstallExit = true;
-                        break;
-                    case "":
-                        uninstallExit = true;
-                        wasUninstalled = uninstallService();
                         break;
                     default:
                         isDefault = true;
@@ -281,6 +272,7 @@ namespace Installer
                 {
                     case "y":
                     case "Y":
+                    case "":
                         vivaldiExit = true;
                         break;
                     case "n":
@@ -288,10 +280,8 @@ namespace Installer
                         vivaldiExit = true;
                         exit = true;
                         break;
-                    case "":
-                        vivaldiExit = true;
-                        break;
                     default:
+                        vivaldiExit = false;
                         break;
                 }
             }
@@ -314,16 +304,13 @@ namespace Installer
                 {
                     case "y":
                     case "Y":
+                    case "":
                         uninstallExit = true;
                         wasUninstalled = deleteModFiles();
                         break;
                     case "N":
                     case "n":
                         uninstallExit = true;
-                        break;
-                    case "":
-                        uninstallExit = true;
-                        wasUninstalled = deleteModFiles();
                         break;
                     default:
                         isDefault = true;
