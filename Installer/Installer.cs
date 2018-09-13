@@ -13,19 +13,19 @@ using System.Collections.Generic;
 
 namespace Installer
 {
-    class Installer
+    static class Installer
     {
-        static bool exit = false;
+        static bool exit;
         static string fullPath = System.Reflection.Assembly.GetEntryAssembly().Location;
         static string path = fullPath.Substring(0, fullPath.Length - 13);
 
         static void Main(string[] args)
         {
-            if (args.Length == 0)
+            if (args.Length == 0 || (!args[0].Equals("uninstall") && !args[0].Equals("Uninstall")))
             {
                 installer();
             }
-            else if (args[0] == "uninstall" || args[0] == "Uninstall")
+            else
             {
                 uninstaller();
                 reset("\\ColorChangerService\\config.ini",
@@ -33,10 +33,6 @@ namespace Installer
                     "subKey = <SubKey>\n"
                     );
                 Console.WriteLine("Sub Key Reset in 'ColorChangerService\\config.ini'");
-            }
-            else
-            {
-                installer();
             }
             resetKeys();
             Console.WriteLine("");
