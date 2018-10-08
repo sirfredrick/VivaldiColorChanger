@@ -21,7 +21,10 @@ Make a Pubnub account by going to the [www.pubnub.com](https://www.pubnub.com/) 
 Once you are logged in create a new app and then copy the `Publish and Subscribe Keys` for later.
 
 Download the project binaries and the required RGB Fusion API files:
-* [Binaries](https://github.com/sirfredrick231/VivaldiColorChanger/releases)
+[Binaries](https://github.com/sirfredrick231/VivaldiColorChanger/releases)
+* Latest Version- [B18.0206.1.zip](https://www.gigabyte.com/WebPage/332/images/B18.0206.1.zip)
+
+**Note** If you are using this project Pre-Version 2.0.0 use:
 * [B17.0926.1.zip](https://www.gigabyte.com/WebPage/332/images/B17.0926.1.zip)
 
 Move the RGB Fusion files `GLedApi.dll`, `ycc.dll`, and `layout.ini` to the ColorChangerService Folder.
@@ -124,11 +127,11 @@ See `CONTRIBUTING.md` for the specifics.
    - Thanks to [Vivaldi](https://vivaldi.com/) and it's amazing community: https://forum.vivaldi.net/topic/26553/is-there-a-way-to-get-the-accent-color-in-custom-js 
 
 ## Copyright
-GLedAPIDotNET from RGB-Fusion-Tool Copyright © 2018 Tyler Szabo
+GLedAPIDotNET from RGB-Fusion-Tool Copyright ï¿½ 2018 Tyler Szabo
 
-Installer, ColorChangerService, and custom.js Copyright © 2018 Jeffrey Tucker
+Installer, ColorChangerService, and custom.js Copyright ï¿½ 2018 Jeffrey Tucker
 
-pubnub.js Copyright © 2013 PubNub Inc.
+pubnub.js Copyright ï¿½ 2013 PubNub Inc.
 
 ## Licensing
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

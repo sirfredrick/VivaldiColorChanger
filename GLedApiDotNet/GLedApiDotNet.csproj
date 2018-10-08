@@ -71,18 +71,5 @@ You should have received a copy of the GNU General Public License along with thi
     <Compile Include="LedSettings\StaticLedSetting.cs" />
     <Compile Include="RGBFusionMotherboard.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="GLedApi.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ycc.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="layout.ini">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
