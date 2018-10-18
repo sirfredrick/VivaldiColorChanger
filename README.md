@@ -1,10 +1,10 @@
 # Vivaldi Color Changer Service
 >  Vivaldi Browser Mod and CMD Installer included!
 
-[![Build status](https://ci.appveyor.com/api/projects/status/bylj0shkxjhhed2m/branch/master?svg=true)](https://ci.appveyor.com/project/sirfredrick231/vivaldicolorchanger/branch/master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5c9894303e1e4461b0e945b7d35fd9f8)](https://www.codacy.com/app/sirfredrick231/VivaldiColorChanger?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sirfredrick231/VivaldiColorChanger&amp;utm_campaign=Badge_Grade)
+[![Build status](https://ci.appveyor.com/api/projects/status/bylj0shkxjhhed2m/branch/master?svg=true)](https://ci.appveyor.com/project/sirfredrick231/vivaldicolorchanger/branch/master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5c9894303e1e4461b0e945b7d35fd9f8)](https://www.codacy.com/app/sirfredrick231/VivaldiColorChanger?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sirfredrick231/VivaldiColorChanger&amp;utm_campaign=Badge_Grade)[![GitHub release](https://img.shields.io/github/release/sirfredrick231/VivaldiColorChanger.svg) ![.NET Version](https://img.shields.io/badge/.NET%20Framework-4.6.1-lightgrey.svg)![GitHub](https://img.shields.io/github/license/sirfredrick231/VivaldiColorChanger.svg)](https://github.com/sirfredrick231/VivaldiColorChanger)
 
 Vivaldi Color Changer Service aims to bring the functionality of the changing accent tab color to your RGB Motherboard LEDs. This project has two components a [Vivaldi Browser](https://vivaldi.com/) Mod that grabs the accent color and posts it to [Pubnub](https://www.pubnub.com/), and a Windows Service that talks to the motherboard. The mod is written in JavaScript while the Service, and Installer are written in C# targeting .NET 4.6.1. 
-
+![Vivaldi Color Changer Service](https://i.imgur.com/EzRxdzV.png)
 ## Features
 So what can this project do?
 * This project updates your motherboard LEDs to match your Vivaldi Browser's accent color.
@@ -127,11 +127,11 @@ See `CONTRIBUTING.md` for the specifics.
    - Thanks to [Vivaldi](https://vivaldi.com/) and it's amazing community: https://forum.vivaldi.net/topic/26553/is-there-a-way-to-get-the-accent-color-in-custom-js 
 
 ## Copyright
-GLedAPIDotNET from RGB-Fusion-Tool Copyright ï¿½ 2018 Tyler Szabo
+GLedAPIDotNET from RGB-Fusion-Tool Copyright © 2018 Tyler Szabo
 
-Installer, ColorChangerService, and custom.js Copyright ï¿½ 2018 Jeffrey Tucker
+Installer, ColorChangerService, and custom.js Copyright © 2018 Jeffrey Tucker
 
-pubnub.js Copyright ï¿½ 2013 PubNub Inc.
+pubnub.js Copyright © 2013 PubNub Inc.
 
 ## Licensing
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
