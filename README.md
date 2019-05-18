@@ -9,6 +9,7 @@ Vivaldi Color Changer Service aims to bring the functionality of the changing ac
 So what can this project do?
 * This project updates your motherboard LEDs to match your Vivaldi Browser's accent color.
 * Since this project has a separate Vivaldi Mod and Windows Service you can either just use the Vivaldi Mod to change other LEDs or you can change your motherboard LEDs by having another program talk with the Windows Service. The options are almost limitless!
+* This project now has a EXE Installer!
 
 #### Note:
 
@@ -20,45 +21,19 @@ Make a Pubnub account by going to the [www.pubnub.com](https://www.pubnub.com/) 
 
 Once you are logged in create a new app and then copy the `Publish and Subscribe Keys` for later.
 
-Download the project binaries and the required RGB Fusion API files:
-[Binaries](https://github.com/sirfredrick231/VivaldiColorChanger/releases)
+Download the project binary Setup.exe installer:
+[Binary Installer](https://github.com/sirfredrick231/VivaldiColorChanger/releases)
+This project uses RGB Fusion SDK. The supported binaries can be found here
 * Latest Version- [B18.0206.1.zip](https://www.gigabyte.com/WebPage/332/images/B18.0206.1.zip)
 
 **Note** If you are using this project Pre-Version 2.0.0 use:
 * [B17.0926.1.zip](https://www.gigabyte.com/WebPage/332/images/B17.0926.1.zip)
 
-Move the RGB Fusion files `GLedApi.dll`, `ycc.dll`, and `layout.ini` to the ColorChangerService Folder.
-
 ## Installing
-Now, run `Installer.exe` in the root folder.
+Just run `Setup.exe` and input you `Vivaldi Browser` path (Make sure to install the [Vivaldi Browser](https://vivaldi.com/download/) if you haven't already.) and  your `Publish and Subscribe Keys`
+Copy and Paste your PubNub Subsribe Key Below.
+and then the installer will install and start the Windows Service.
 
-Copy and paste your `Publish and Subscribe Keys`
-```shell
-Welcome to the Color Changer Service Console Installer.
-Please Copy and Paste your PubNub Subsribe Key Below.
-<Paste Sub Key Here>
-Please Copy and Paste your PubNub Publish Key Below.
-<Paste Pub Key Here>
-```
-and then install and start the Windows Service.
-
-```shell
-Commence Installation of the Color Changer Service? (Y/n)
-y
-Installation Complete:
-Would you like to start Color Changer Service now? (Y/n)
-y
-```
-
-Finally Install the Vivaldi Mod. Make sure to install the [Vivaldi Browser](https://vivaldi.com/download/) if you haven't already.
-
-```shell
-Would you like to install the accompanying Vivaldi Mod? (Y/n)
-y
-Please enter the path to your Vivaldi Folder.
-<Path to Vivaldi Program Folder>
-```
-The path is usually `C:\Program Files\Vivaldi` or `C:\Program Files (x86)\Vivaldi`
 
 Once you are done with that the installation should now be done! Wasn't that easier than you thought?
 
@@ -66,10 +41,8 @@ When you start Vivaldi go to a new website and see the color on your motherboard
 
 ## Uninstalling
 
-To uninstall either the Windows Service or Vivaldi Mod, go to the root folder in an Admin CMD and run
-```shell
-Installer.exe uninstall
-```
+To uninstall the `ColorChangerService` run the `unins000.exe` and follow the instruction.
+The `Vivaldi Mod` will uninstall when you update `Vivaldi`.
 Follow the uninstall instructions and you should be back to a boring old setup!
 
 ## Developing
@@ -78,18 +51,19 @@ If you want to help develop this project, welcome aboard!
 To get started, clone the repository and open the `solution` in [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/). Right now the project is targeting `.NET 4.6.1`
 
 ```shell
-git clone https://github.com/your/awesome-project.git
+git clone https://github.com/sirfredrick231/VivaldiColorChanger.git
 ```
 
 ### Building
 
-To run the Installer manually, Build the solution and copy the output of the `Installer project` to the root and the output of the `ColorChangerService Project` to `\ColorChangerService\`. Then, copy the `Vivaldi folder` to the root.
+To run the Installer manually, Build the solution and look in the `ColorChangerService Project` in the release folder.
 
-You can now run the Installer directly.
+Then use [InnoSetup](http://www.jrsoftware.org/isinfo.php) to compile the `Setup.exe` make sure to change the folder path's in the `Setup.iss` to where the release folder is.
 
 To debug just the service, we have [Topshelf](http://topshelf-project.com/) this allows us to run the Windows Service as a Console app in the debugger! 
-Make sure that you copy the `GLedApi.dll`, `ycc.dll`, and `layout.ini` to the `\GLedAPIDotNet\` folder.
-Also, change `config.ini` to have the right subscribe key. Finally, the `ColorChangerService.exe` only works in `x86`, not `x86_64`.
+Make sure that you copy the `GLedApi.dll`, `ycc.dll`, and `layout.ini` to the `\GLedAPIDotNet\` folder when not using `Setup.exe`.
+
+Finally, the `ColorChangerService.exe` only works in `x86`, not `x86_64`.
 
 To manually install the Vivaldi Mod, add the `custom.js` and `pubnub.js` files to the `Vivaldi\Application\<Version #>\resources\vivaldi` and add 
 ```shell
@@ -124,14 +98,21 @@ See `CONTRIBUTING.md` for the specifics.
 - Related projects:
    - Thanks to Tyler Szabo for the GLedApiDotNet project from the RGB-Fusion-Tool: https://github.com/tylerszabo/RGB-Fusion-Tool
    - Thanks to Topshelf for making an easy to use Windows Service Library: http://topshelf-project.com/
-   - Thanks to [Vivaldi](https://vivaldi.com/) and it's amazing community: https://forum.vivaldi.net/topic/26553/is-there-a-way-to-get-the-accent-color-in-custom-js 
+   - Thanks to [Vivaldi](https://vivaldi.com/) and it's amazing community: https://forum.vivaldi.net/topic/26553/is-there-a-way-to-get-the-accent-color-in-custom-js
+   - Thanks to [Han-soft](http://www.han-soft.com/) for their excellent dwinshs.iss program. It made it simple to download proprietary files
 
 ## Copyright
-GLedAPIDotNET from RGB-Fusion-Tool Copyright � 2018 Tyler Szabo
+GLedAPIDotNET from RGB-Fusion-Tool Copyright © 2018 Tyler Szabo
 
-Installer, ColorChangerService, and custom.js Copyright � 2018 Jeffrey Tucker
+Installer, ColorChangerService, and custom.js, MoveDLLs, MoveVivaldiFiles, Setup.iss Copyright © 2018 Jeffrey Tucker
 
-pubnub.js Copyright � 2013 PubNub Inc.
+pubnub.js Copyright © 2013 PubNub Inc.
+
+Inno Setup Copyright © 1997-2019 Jordan Russell
+
+DwinHs Copyright © 2001, 2015 Han-soft Corporation
+
+unzip.exe Copyright 1990-2009 © Info-ZIP
 
 ## Licensing
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
