@@ -51,17 +51,21 @@ namespace GLedApiDotNet.LedSettings
 
         protected Modes Mode { get => mode; set => mode = value; }
 
-        protected byte MaxBrightness { get => maxBrightness;
+        protected byte MaxBrightness
+        {
+            get => maxBrightness;
             set
             {
                 if (value > 100)
                 {
-                    throw new ArgumentOutOfRangeException("value",  value, "must be between 0 and 100");
+                    throw new ArgumentOutOfRangeException("value", value, "must be between 0 and 100");
                 }
                 maxBrightness = value;
             }
         }
-        protected byte MinBrightness { get => minBrightness;
+        protected byte MinBrightness
+        {
+            get => minBrightness;
             set
             {
                 if (value > 100)

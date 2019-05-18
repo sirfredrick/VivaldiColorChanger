@@ -23,7 +23,8 @@ namespace GLedApiDotNet
             internal MotherboardLedLayoutImpl(Raw.GLedAPIv1_0_0Wrapper api, int maxDivisions)
             {
                 this.maxDivisions = maxDivisions;
-                myLayout = new Lazy<LedType[]>(() => {
+                myLayout = new Lazy<LedType[]>(() =>
+                {
                     byte[] rawLayout = api.GetLedLayout(maxDivisions);
                     if (maxDivisions != rawLayout.Length)
                     {
@@ -44,7 +45,7 @@ namespace GLedApiDotNet
 
             public IEnumerator<LedType> GetEnumerator()
             {
-                foreach(LedType led in myLayout.Value)
+                foreach (LedType led in myLayout.Value)
                 {
                     yield return led;
                 }
@@ -61,11 +62,12 @@ namespace GLedApiDotNet
 
             internal void WriteToApi(Raw.GLedAPIv1_0_0Wrapper api)
             {
-                if (dirty) {
+                if (dirty)
+                {
                     // This is a workaround to avoid some zones/divisions not getting configured (issue #9).
                     // Calling SetLedData twice will actually allow all zones to be set.
                     api.SetLedData(this);
-                    api.SetLedData(this); 
+                    api.SetLedData(this);
                     dirty = false;
                 }
             }
@@ -77,7 +79,7 @@ namespace GLedApiDotNet
                 IEnumerator<LedType> e = layout.GetEnumerator();
                 for (int i = 0; i < ledSettings.Length; i++)
                 {
-                    if(!e.MoveNext())
+                    if (!e.MoveNext())
                     {
                         throw new GLedAPIException(string.Format("Number of layouts < length ({0})", ledSettings.Length));
                     }
@@ -99,7 +101,7 @@ namespace GLedApiDotNet
 
             public IEnumerator<LedSetting> GetEnumerator()
             {
-                foreach(LedSetting ledSetting in ledSettings)
+                foreach (LedSetting ledSetting in ledSettings)
                 {
                     yield return ledSetting;
                 }
@@ -151,7 +153,7 @@ namespace GLedApiDotNet
 
             maxDivisions = api.GetMaxDivision();
             if (maxDivisions == 0)
-			{
+            {
                 throw new GLedAPIException("No divisions");
             }
 

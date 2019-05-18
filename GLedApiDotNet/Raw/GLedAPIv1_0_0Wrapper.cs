@@ -23,7 +23,7 @@ namespace GLedApiDotNet.Raw
             this.rawApi = rawApi;
         }
 
-        public GLedAPIv1_0_0Wrapper() : this(new GLedAPIv1_0_0Impl()) {}
+        public GLedAPIv1_0_0Wrapper() : this(new GLedAPIv1_0_0Impl()) { }
 
         private void CheckReturn(string apiFunction, uint result)
         {
@@ -51,7 +51,7 @@ namespace GLedApiDotNet.Raw
             int result = rawApi.GetMaxDivision();
             if (result < 0)
             {
-                throw new GLedAPIv1_0_0Exception("dllexp_GetMaxDivision", unchecked ((uint)result));
+                throw new GLedAPIv1_0_0Exception("dllexp_GetMaxDivision", unchecked((uint)result));
             }
             return result;
         }
