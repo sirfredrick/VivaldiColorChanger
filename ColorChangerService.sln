@@ -17,7 +17,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vivaldi", "Vivaldi", "{0ABBC960-1950-4B3E-BC86-1D298CB3EA98}"
 	ProjectSection(SolutionItems) = preProject
 		Vivaldi\custom.js = Vivaldi\custom.js
-		Vivaldi\custom.txt = Vivaldi\custom.txt
 		Vivaldi\pubnub.js = Vivaldi\pubnub.js
 	EndProjectSection
 EndProject
@@ -27,6 +26,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoveVivaldiFiles", "MoveViv
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Inno Setup", "Inno Setup", "{1E843EFB-F57F-43EE-A9BC-EBEB8304B47A}"
 	ProjectSection(SolutionItems) = preProject
+		Inno Setup\dwinshs.iss = Inno Setup\dwinshs.iss
 		Inno Setup\gpl-3.0.txt = Inno Setup\gpl-3.0.txt
 		Inno Setup\Setup.iss = Inno Setup\Setup.iss
 	EndProjectSection
