@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\ColorChangerService\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -30,7 +30,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\Release\ColorChangerService\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -38,7 +38,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug\</OutputPath>
+    <OutputPath>bin\x86\Debug\ColorChangerService\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
@@ -46,7 +46,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>bin\x86\Release\</OutputPath>
+    <OutputPath>bin\x86\Release\ColorChangerService\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
@@ -104,10 +104,23 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="config.ini">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+        <VivaldiFiles Include="..\Vivaldi\**\*.*"/>
   </ItemGroup>
+  <ItemGroup>
+        <InnoSetupFiles Include="..\Inno Setup\**\*.*"/>
+  </ItemGroup>
+  <ItemGroup>
+        <unzipFiles Include="..\unzip\**\*.*"/>
+  </ItemGroup>
+  <Target Name="CopyVivaldiFiles" AfterTargets="AfterBuild">
+  <Copy SourceFiles="@(VivaldiFiles)" DestinationFolder="$(ProjectDir)\bin\x86\Release\Vivaldi\" />
+</Target>
+<Target Name="CopyInnoSetupFiles" AfterTargets="AfterBuild">
+  <Copy SourceFiles="@(InnoSetupFiles)" DestinationFolder="$(ProjectDir)\bin\x86\Release\" />
+</Target>
+<Target Name="CopyunzipFiles" AfterTargets="AfterBuild">
+  <Copy SourceFiles="@(unzipFiles)" DestinationFolder="$(ProjectDir)\bin\x86\Release\unzip\" />
+</Target>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <UsingTask AssemblyFile="$(SolutionDir)packages\WixSharp.1.6.4.0\build\SetEnvVar.dll" TaskName="SetEnvVar" />
 </Project>
