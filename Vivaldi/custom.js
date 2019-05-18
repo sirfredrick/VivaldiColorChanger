@@ -1,8 +1,8 @@
 var firstTime = true;
 var colorOld = '';
 var pubnub = new PubNub({
-    subscribeKey: <subKey> // always required
-    publishKey: <pubKey> // only required if publishing
+    subscribeKey: '<subKey>', // always required
+    publishKey: '<pubKey>' // only required if publishing
 });
 setInterval(function wait() {
     var adr = document.querySelector(".toolbar-addressbar.toolbar");
