@@ -33,7 +33,7 @@ namespace ColorChangerService
                     s.WhenStopped(tc => tc.Stop());
                 });
                 x.RunAsLocalSystem();
-                x.SetDescription("Changes the RGB Color of Gigabyte Motherboards to a random color every three seconds.");
+                x.SetDescription("Changes the RGB Color of Gigabyte Motherboards based on current tab color of Vivaldi Browser.");
                 x.SetDisplayName("Color Changer");
                 x.SetServiceName("ColorChanger");
             });
