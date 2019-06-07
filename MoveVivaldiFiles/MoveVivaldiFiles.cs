@@ -88,20 +88,10 @@ namespace MoveVivaldiFiles
         }
         static void MoveFiles()
         {
-            CopyWithBackup(path + "Vivaldi\\custom.js", browserPath + "\\custom.js", path + "Vivaldi\\backup\\custom.js");
-            CopyWithBackup(path + "Vivaldi\\pubnub.js", browserPath + "\\pubnub.js", path + "Vivaldi\\backup\\pubnub.js");
-            CopyWithBackup(path + "Vivaldi\\browser.html", browserPath + "\\browser.html", path + "Vivaldi\\backup\\browser.html");
+            File.Copy(path + "Vivaldi\\custom.js", browserPath + "\\custom.js", true);
+            File.Copy(path + "Vivaldi\\pubnub.js", browserPath + "\\pubnub.js", true);
+            File.Copy(path + "Vivaldi\\browser.html", browserPath + "\\browser.html", true);
             exit = true;
-        }
-        public static void CopyWithBackup(string sourceFileName, string destFileName, string backupFileName)
-        {
-            if (File.Exists(destFileName))
-            {
-                File.Copy(destFileName, backupFileName, true);
-            }
-
-            File.Copy(sourceFileName, destFileName, true);
-
         }
     }
 }
