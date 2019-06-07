@@ -14,8 +14,8 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{0CED4BED-BBDC-4957-8694-803498B0C3B0}
 AppName=Vivaldi Color Changer Service
-AppVersion=2.1.0
-;AppVerName=Vivaldi Color Changer Service 2.1.0
+AppVersion=2.1.1
+AppVerName=Vivaldi Color Changer Service 2.1.1
 AppPublisher=Sir Fredrick
 AppPublisherURL=https://sirfredrick.vivaldi.net/
 AppSupportURL=https://github.com/sirfredrick231/VivaldiColorChanger/
