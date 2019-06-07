@@ -38,7 +38,7 @@ Source: "<Release Folder>\unzip\unzip.exe"; DestDir: "{tmp}"; Flags: ignoreversi
 Source: "<Release Folder>\MoveDLLs\*"; DestDir: "{tmp}"; Flags: ignoreversion recursesubdirs
 Source: "<Release Folder>\MoveVivaldiFiles\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
 Source: "<Release Folder>\ColorChangerService\*"; DestDir: "{app}\ColorChangerService"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "<Release Folder>\Color Changer 2.1.0\Vivaldi\*"; DestDir: "{app}\Vivaldi"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "<Release Folder>\Vivaldi\*"; DestDir: "{app}\Vivaldi"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
@@ -54,6 +54,7 @@ Filename: {app}\ColorChangerService\config.ini; Section: configKeys; Key: subKey
 Filename: "{tmp}\unzip.exe"; Parameters: "SDK.zip"; Flags: runascurrentuser skipifsilent
 Filename: "{tmp}\MoveDLLs.exe"; Parameters: """{app}\ColorChangerService\"; Flags: runascurrentuser skipifsilent
 Filename: "{app}\ColorChangerService\ColorChangerService.exe"; Parameters: "install --localsystem --autostart"; Description: "{cm:LaunchProgram,Vivaldi Color Changer Service}"; Flags: runascurrentuser skipifsilent
+Filename: "{app}\ColorChangerService\ColorChangerService.exe"; Parameters: "start"; Flags: runascurrentuser skipifsilent
 Filename: "{app}\moveVivaldiFiles.exe"; Parameters: """{code:GetVivaldiPath}"""; Flags: runascurrentuser skipifsilent 
 
 [UninstallRun]
