@@ -1,4 +1,4 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2027
@@ -24,14 +24,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoveVivaldiFiles", "MoveViv
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Inno Setup", "Inno Setup", "{1E843EFB-F57F-43EE-A9BC-EBEB8304B47A}"
 	ProjectSection(SolutionItems) = preProject
+		Inno Setup\dwinshs license.txt = Inno Setup\dwinshs license.txt
 		Inno Setup\dwinshs.iss = Inno Setup\dwinshs.iss
 		Inno Setup\gpl-3.0.txt = Inno Setup\gpl-3.0.txt
-		Inno Setup\Setup.iss = Inno Setup\Setup.iss
+		Inno Setup\setup.iss = Inno Setup\setup.iss
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unzip", "unzip", "{922543B6-CA72-49D5-BBAC-37BAC55E194E}"
 	ProjectSection(SolutionItems) = preProject
-		unzip\License.txt = unzip\License.txt
+		unzip\unzip license.txt = unzip\unzip license.txt
 		unzip\unzip.exe = unzip\unzip.exe
 	EndProjectSection
 EndProject

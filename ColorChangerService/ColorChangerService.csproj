@@ -95,7 +95,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GLedApiDotNet\GLedApiDotNet.csproj">
@@ -104,23 +106,26 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-        <VivaldiFiles Include="..\Vivaldi\**\*.*"/>
+    <VivaldiFiles Include="..\Vivaldi\**\*.*" />
   </ItemGroup>
   <ItemGroup>
-        <InnoSetupFiles Include="..\Inno Setup\**\*.*"/>
+    <InnoSetupFiles Include="..\Inno Setup\dwinshs license.txt" />
+    <InnoSetupFiles Include="..\Inno Setup\dwinshs.iss" />
+    <InnoSetupFiles Include="..\Inno Setup\gpl-3.0.txt" />
+    <InnoSetupFiles Include="..\Inno Setup\setup.iss" />
   </ItemGroup>
   <ItemGroup>
-        <unzipFiles Include="..\unzip\**\*.*"/>
+    <unzipFiles Include="..\unzip\**\*.*" />
   </ItemGroup>
   <Target Name="CopyVivaldiFiles" AfterTargets="AfterBuild">
-  <Copy SourceFiles="@(VivaldiFiles)" DestinationFolder="$(ProjectDir)\bin\x86\Release\Vivaldi\" />
-</Target>
-<Target Name="CopyInnoSetupFiles" AfterTargets="AfterBuild">
-  <Copy SourceFiles="@(InnoSetupFiles)" DestinationFolder="$(ProjectDir)\bin\x86\Release\" />
-</Target>
-<Target Name="CopyunzipFiles" AfterTargets="AfterBuild">
-  <Copy SourceFiles="@(unzipFiles)" DestinationFolder="$(ProjectDir)\bin\x86\Release\unzip\" />
-</Target>
+    <Copy SourceFiles="@(VivaldiFiles)" DestinationFolder="$(ProjectDir)\bin\x86\Release\Vivaldi\" />
+  </Target>
+  <Target Name="CopyInnoSetupFiles" AfterTargets="AfterBuild">
+    <Copy SourceFiles="@(InnoSetupFiles)" DestinationFolder="$(ProjectDir)\bin\x86\Release\" />
+  </Target>
+  <Target Name="CopyunzipFiles" AfterTargets="AfterBuild">
+    <Copy SourceFiles="@(unzipFiles)" DestinationFolder="$(ProjectDir)\bin\x86\Release\unzip\" />
+  </Target>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <UsingTask AssemblyFile="$(SolutionDir)packages\WixSharp.1.6.4.0\build\SetEnvVar.dll" TaskName="SetEnvVar" />
 </Project>
