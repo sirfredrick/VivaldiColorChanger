@@ -24,7 +24,6 @@ namespace ColorChangerService
         readonly Pubnub pubnub;
         readonly string[] channel = { "Vivaldi RGB" };
 
-
         public ColorChanger(EventLog log)
         {
             this.log = log;
@@ -103,8 +102,11 @@ namespace ColorChangerService
 
         public void ChangeColor(Color color)
         {
-            PulseLedSetting setting = new PulseLedSetting(color, 100, 0, TimeSpan.FromSeconds(3), TimeSpan.FromSeconds(3));
-            motherboardLEDs.SetAll(setting);
+            string themePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Local\\Microsoft\\Windows\\Themes\\Vivaldi.theme";
+            log.WriteEntry("Switching to theme: " + themePath);
+            ThemeChanger themeChanger = new ThemeChanger(log);
+            themeChanger.changeColor(color);
+            themeChanger.switchTheme(themePath);
             log.WriteEntry("Changed Color: to " + HexConverter(color), EventLogEntryType.Information, 20);
         }
         private static String HexConverter(Color color)
