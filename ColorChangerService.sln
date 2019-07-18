@@ -12,8 +12,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorChangerService", "Colo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLedApiDotNet", "GLedApiDotNet\GLedApiDotNet.csproj", "{8F12301F-EC86-4A76-A6A1-AE3EE0A2945B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Installer", "Installer\Installer.csproj", "{52277674-7FCD-4BE5-AAD9-F24472C40382}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vivaldi", "Vivaldi", "{0ABBC960-1950-4B3E-BC86-1D298CB3EA98}"
 	ProjectSection(SolutionItems) = preProject
 		Vivaldi\custom.js = Vivaldi\custom.js
@@ -26,14 +24,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoveVivaldiFiles", "MoveViv
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Inno Setup", "Inno Setup", "{1E843EFB-F57F-43EE-A9BC-EBEB8304B47A}"
 	ProjectSection(SolutionItems) = preProject
+		Inno Setup\dwinshs license.txt = Inno Setup\dwinshs license.txt
 		Inno Setup\dwinshs.iss = Inno Setup\dwinshs.iss
 		Inno Setup\gpl-3.0.txt = Inno Setup\gpl-3.0.txt
-		Inno Setup\Setup.iss = Inno Setup\Setup.iss
+		Inno Setup\setup.iss = Inno Setup\setup.iss
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unzip", "unzip", "{922543B6-CA72-49D5-BBAC-37BAC55E194E}"
 	ProjectSection(SolutionItems) = preProject
-		unzip\License.txt = unzip\License.txt
+		unzip\unzip license.txt = unzip\unzip license.txt
 		unzip\unzip.exe = unzip\unzip.exe
 	EndProjectSection
 EndProject
@@ -71,18 +70,6 @@ Global
 		{8F12301F-EC86-4A76-A6A1-AE3EE0A2945B}.Release|x64.Build.0 = Release|Any CPU
 		{8F12301F-EC86-4A76-A6A1-AE3EE0A2945B}.Release|x86.ActiveCfg = Release|Any CPU
 		{8F12301F-EC86-4A76-A6A1-AE3EE0A2945B}.Release|x86.Build.0 = Release|Any CPU
-		{52277674-7FCD-4BE5-AAD9-F24472C40382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{52277674-7FCD-4BE5-AAD9-F24472C40382}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{52277674-7FCD-4BE5-AAD9-F24472C40382}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{52277674-7FCD-4BE5-AAD9-F24472C40382}.Debug|x64.Build.0 = Debug|Any CPU
-		{52277674-7FCD-4BE5-AAD9-F24472C40382}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{52277674-7FCD-4BE5-AAD9-F24472C40382}.Debug|x86.Build.0 = Debug|Any CPU
-		{52277674-7FCD-4BE5-AAD9-F24472C40382}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{52277674-7FCD-4BE5-AAD9-F24472C40382}.Release|Any CPU.Build.0 = Release|Any CPU
-		{52277674-7FCD-4BE5-AAD9-F24472C40382}.Release|x64.ActiveCfg = Release|Any CPU
-		{52277674-7FCD-4BE5-AAD9-F24472C40382}.Release|x64.Build.0 = Release|Any CPU
-		{52277674-7FCD-4BE5-AAD9-F24472C40382}.Release|x86.ActiveCfg = Release|Any CPU
-		{52277674-7FCD-4BE5-AAD9-F24472C40382}.Release|x86.Build.0 = Release|Any CPU
 		{1EF2608D-B11D-4EBA-AC8D-E8282FC47A90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1EF2608D-B11D-4EBA-AC8D-E8282FC47A90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EF2608D-B11D-4EBA-AC8D-E8282FC47A90}.Debug|x64.ActiveCfg = Debug|Any CPU
