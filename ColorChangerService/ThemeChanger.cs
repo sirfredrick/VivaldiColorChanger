@@ -56,7 +56,7 @@ namespace ColorChangerService
                 FileIniDataParser parser = new FileIniDataParser();
                 try
                 {
-                    string themePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Local\\Microsoft\\Windows\\Themes\\Vivaldi.theme";
+                    string themePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Microsoft\\Windows\\Themes\\Vivaldi.theme";
                     IniData data = parser.ReadFile(themePath);
                     string colorHex = "0x" + color.A.ToString("X2") + color.R.ToString("X2") + color.G.ToString("X2") + color.B.ToString("X2");
                     data["VisualStyles"]["ColorizationColor"] = "0x" + color.A.ToString("X2") + color.R.ToString("X2") + color.G.ToString("X2") + color.B.ToString("X2");
