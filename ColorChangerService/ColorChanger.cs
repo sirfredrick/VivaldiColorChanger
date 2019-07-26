@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2018 Jeffrey Tucker
+// Copyright (C) 2018 Jeffrey Tucker
 //
 // This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 //
@@ -23,13 +23,14 @@ namespace ColorChangerService
         readonly IRGBFusionMotherboard motherboardLEDs = new LazyMotherboard();
         readonly Pubnub pubnub;
         readonly string[] channel = { "Vivaldi RGB" };
+        string path = System.Reflection.Assembly.GetEntryAssembly().Location;
 
         public ColorChanger(EventLog log)
         {
             this.log = log;
             PNConfiguration config = new PNConfiguration();
             string configKey = "";
-            string path = System.Reflection.Assembly.GetEntryAssembly().Location;
+
             log.WriteEntry("The Service executable path is: " + path, EventLogEntryType.Information);
             try
             {
@@ -102,12 +103,20 @@ namespace ColorChangerService
 
         public void ChangeColor(Color color)
         {
-            string themePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Local\\Microsoft\\Windows\\Themes\\Vivaldi.theme";
-            log.WriteEntry("Switching to theme: " + themePath);
-            ThemeChanger themeChanger = new ThemeChanger(log);
-            themeChanger.changeColor(color);
-            themeChanger.switchTheme(themePath);
-            log.WriteEntry("Changed Color: to " + HexConverter(color), EventLogEntryType.Information, 20);
+            FileIniDataParser parser = new FileIniDataParser();
+            try
+            {
+                IniData themeData = parser.ReadFile(path.Substring(0, path.Length - 23) + "\\config.ini");
+                string themePath = themeData["themePaths"]["themePath"];
+                Console.WriteLine(themePath);
+                log.WriteEntry("Switching to theme: " + themePath);
+                ThemeChanger themeChanger = new ThemeChanger(log);
+                themeChanger.changeColor(color, themePath);
+                themeChanger.switchTheme(themePath);
+                log.WriteEntry("Changed Color: to " + HexConverter(color), EventLogEntryType.Information, 20);
+            } catch (Exception e) {
+                log.WriteEntry("Could not get theme path: " + e);
+            }
         }
         private static String HexConverter(Color color)
         {

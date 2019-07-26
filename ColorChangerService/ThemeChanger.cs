@@ -36,6 +36,7 @@ namespace ColorChangerService
                 Process p = new Process();
                 p.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
                 p.StartInfo.FileName = path + "ChangeTheme.bat";
+                p.StartInfo.Arguments = themePath;
                 log.WriteEntry("Running: " + p.StartInfo.FileName + " " + p.StartInfo.Arguments);
                 p.Start();
             }
@@ -46,7 +47,7 @@ namespace ColorChangerService
             }
             return true;
         }
-        public void changeColor(Color color)
+        public void changeColor(Color color, string themePath)
         {
             string path = System.Reflection.Assembly.GetEntryAssembly().Location;
             log.WriteEntry("The Service executable path is: " + path);
@@ -55,8 +56,11 @@ namespace ColorChangerService
                 log.WriteEntry(color.GetHashCode().ToString());
                 FileIniDataParser parser = new FileIniDataParser();
                 try
-                {
-                    string themePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Microsoft\\Windows\\Themes\\Vivaldi.theme";
+                { 
+                    //User does not want theme changing enabled See setup.iss
+                    if (themePath.Equals("")) {
+                        return;
+                    }
                     IniData data = parser.ReadFile(themePath);
                     string colorHex = "0x" + color.A.ToString("X2") + color.R.ToString("X2") + color.G.ToString("X2") + color.B.ToString("X2");
                     data["VisualStyles"]["ColorizationColor"] = "0x" + color.A.ToString("X2") + color.R.ToString("X2") + color.G.ToString("X2") + color.B.ToString("X2");

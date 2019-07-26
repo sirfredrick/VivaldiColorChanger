@@ -49,6 +49,7 @@ Name: "{commondesktop}\Vivaldi Color Changer Service"; Filename: "{app}\ColorCha
 [INI]
 Filename: {app}\ColorChangerService\config.ini; Section: configKeys; Key: pubKey; String: " {code:GetPubKey} "
 Filename: {app}\ColorChangerService\config.ini; Section: configKeys; Key: subKey; String: " {code:GetSubKey} "
+Filename: {app}\ColorChangerService\config.ini; Section: themePaths; Key: themePath; String: " {code:GetThemePath} "
 
 [Run]
 ; Filename: "{tmp}\unzip.exe"; Parameters: "SDK.zip"; Flags: runascurrentuser skipifsilent
@@ -69,6 +70,25 @@ Type: files; Name: "{app}\ColorChangerService\config.ini"
 [Code]
 
 #include "dwinshs.iss"
+var 
+  ThemePage : TInputQueryWizardPage;
+procedure InitializeWizard0();
+begin
+ThemePage := CreateInputQueryPage(wpWelcome,
+    'Theme Path', 'Please enter the path to your current theme file. Leave blank to disable theme changing.',
+    'Default Path: "C://Users/<Username>/AppData/Local/Microsoft/Windows/Themes/<Name>.theme"');
+  ThemePage.Add('Theme Path: ', False);
+end;
+
+function Theme_NextButtonClick(Page: TWizardPage): Boolean;
+begin
+  Result := True;
+end;
+
+function GetThemePath(Param: String): string;
+begin
+result := ThemePage.Values[0];
+end;
 var
 AuthPage : TInputQueryWizardPage;
 
@@ -173,6 +193,7 @@ end;
 
 procedure InitializeWizard;
 begin
+  InitializeWizard0
   InitializeWizard1
   InitializeWizard2
   InitializeWizard3

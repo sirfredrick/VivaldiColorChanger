@@ -1,2 +1,2 @@
-%localappdata%\Microsoft\Windows\Themes\Vivaldi.theme
+%1
 taskkill /F /IM systemsettings.exe
