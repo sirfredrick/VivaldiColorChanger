@@ -51,9 +51,9 @@ Filename: {app}\ColorChangerService\config.ini; Section: configKeys; Key: pubKey
 Filename: {app}\ColorChangerService\config.ini; Section: configKeys; Key: subKey; String: " {code:GetSubKey} "
 
 [Run]
-Filename: "{tmp}\unzip.exe"; Parameters: "SDK.zip"; Flags: runascurrentuser skipifsilent
-Filename: "{tmp}\MoveDLLs.exe"; Parameters: """{app}\ColorChangerService\"; Flags: runascurrentuser skipifsilent
-Filename: "{app}\ColorChangerService\ColorChangerService.exe"; Parameters: "install --localsystem --autostart"; Description: "{cm:LaunchProgram,Vivaldi Color Changer Service}"; Flags: runascurrentuser skipifsilent
+; Filename: "{tmp}\unzip.exe"; Parameters: "SDK.zip"; Flags: runascurrentuser skipifsilent
+; Filename: "{tmp}\MoveDLLs.exe"; Parameters: """{app}\ColorChangerService\"; Flags: runascurrentuser skipifsilent
+Filename: "{app}\ColorChangerService\ColorChangerService.exe"; Parameters: "install --interactive --autostart"; Description: "{cm:LaunchProgram,Vivaldi Color Changer Service}"; Flags: runascurrentuser skipifsilent
 Filename: "{app}\ColorChangerService\ColorChangerService.exe"; Parameters: "start"; Flags: runascurrentuser skipifsilent
 Filename: "{app}\moveVivaldiFiles.exe"; Parameters: """{code:GetVivaldiPath}"""; Flags: runascurrentuser skipifsilent 
 
@@ -61,9 +61,9 @@ Filename: "{app}\moveVivaldiFiles.exe"; Parameters: """{code:GetVivaldiPath}""";
 Filename: "{app}\ColorChangerService\ColorChangerService.exe"; Parameters: "uninstall";
 
 [UninstallDelete]
-Type: files; Name: "{app}\ColorChangerService\GLedApi.dll"
-Type: files; Name: "{app}\ColorChangerService\layout.ini"
-Type: files; Name: "{app}\ColorChangerService\ycc.dll"
+; Type: files; Name: "{app}\ColorChangerService\GLedApi.dll"
+; Type: files; Name: "{app}\ColorChangerService\layout.ini"
+; Type: files; Name: "{app}\ColorChangerService\ycc.dll"
 Type: files; Name: "{app}\ColorChangerService\config.ini"
 
 [Code]
@@ -157,7 +157,7 @@ begin
     WizardForm.NextButton.Enabled := False;
     // Enable to continue after download successfully, save the remote file automatically
     WizardForm.NextButton.Enabled :=
-      DwinsHs_ReadRemoteURL('https://www.gigabyte.com/WebPage/332/images/B18.0206.1.zip', 'My_App', rmGet,
+      DwinsHs_ReadRemoteURL('https://www.gigabyte.com/WebPage/332/images/B19.0311.1.zip', 'My_App', rmGet,
       Response, Size, ExpandConstant('{tmp}') + '\SDK.zip', @OnRead) = READ_OK;
     Downloaded := WizardForm.NextButton.Enabled;
   end;
