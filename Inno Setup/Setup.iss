@@ -14,8 +14,8 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{0CED4BED-BBDC-4957-8694-803498B0C3B0}
 AppName=Vivaldi Color Changer Service
-AppVersion=2.1.1
-AppVerName=Vivaldi Color Changer Service 2.1.1
+AppVersion=2.2.0
+AppVerName=Vivaldi Color Changer Service 2.2.0
 AppPublisher=Sir Fredrick
 AppPublisherURL=https://sirfredrick.vivaldi.net/
 AppSupportURL=https://github.com/sirfredrick231/VivaldiColorChanger/
@@ -49,11 +49,12 @@ Name: "{commondesktop}\Vivaldi Color Changer Service"; Filename: "{app}\ColorCha
 [INI]
 Filename: {app}\ColorChangerService\config.ini; Section: configKeys; Key: pubKey; String: " {code:GetPubKey} "
 Filename: {app}\ColorChangerService\config.ini; Section: configKeys; Key: subKey; String: " {code:GetSubKey} "
+Filename: {app}\ColorChangerService\config.ini; Section: themePaths; Key: themePath; String: " {code:GetThemePath} "
 
 [Run]
-Filename: "{tmp}\unzip.exe"; Parameters: "SDK.zip"; Flags: runascurrentuser skipifsilent
-Filename: "{tmp}\MoveDLLs.exe"; Parameters: """{app}\ColorChangerService\"; Flags: runascurrentuser skipifsilent
-Filename: "{app}\ColorChangerService\ColorChangerService.exe"; Parameters: "install --localsystem --autostart"; Description: "{cm:LaunchProgram,Vivaldi Color Changer Service}"; Flags: runascurrentuser skipifsilent
+; Filename: "{tmp}\unzip.exe"; Parameters: "SDK.zip"; Flags: runascurrentuser skipifsilent
+; Filename: "{tmp}\MoveDLLs.exe"; Parameters: """{app}\ColorChangerService\"; Flags: runascurrentuser skipifsilent
+Filename: "{app}\ColorChangerService\ColorChangerService.exe"; Parameters: "install --interactive --autostart"; Description: "{cm:LaunchProgram,Vivaldi Color Changer Service}"; Flags: runascurrentuser skipifsilent
 Filename: "{app}\ColorChangerService\ColorChangerService.exe"; Parameters: "start"; Flags: runascurrentuser skipifsilent
 Filename: "{app}\moveVivaldiFiles.exe"; Parameters: """{code:GetVivaldiPath}"""; Flags: runascurrentuser skipifsilent 
 
@@ -61,14 +62,33 @@ Filename: "{app}\moveVivaldiFiles.exe"; Parameters: """{code:GetVivaldiPath}""";
 Filename: "{app}\ColorChangerService\ColorChangerService.exe"; Parameters: "uninstall";
 
 [UninstallDelete]
-Type: files; Name: "{app}\ColorChangerService\GLedApi.dll"
-Type: files; Name: "{app}\ColorChangerService\layout.ini"
-Type: files; Name: "{app}\ColorChangerService\ycc.dll"
+; Type: files; Name: "{app}\ColorChangerService\GLedApi.dll"
+; Type: files; Name: "{app}\ColorChangerService\layout.ini"
+; Type: files; Name: "{app}\ColorChangerService\ycc.dll"
 Type: files; Name: "{app}\ColorChangerService\config.ini"
 
 [Code]
 
 #include "dwinshs.iss"
+var 
+  ThemePage : TInputQueryWizardPage;
+procedure InitializeWizard0();
+begin
+ThemePage := CreateInputQueryPage(wpWelcome,
+    'Theme Path', 'Please enter the path to your current theme file. Leave blank to disable theme changing.',
+    'Default Path: "C://Users/<Username>/AppData/Local/Microsoft/Windows/Themes/<Name>.theme"');
+  ThemePage.Add('Theme Path: ', False);
+end;
+
+function Theme_NextButtonClick(Page: TWizardPage): Boolean;
+begin
+  Result := True;
+end;
+
+function GetThemePath(Param: String): string;
+begin
+result := ThemePage.Values[0];
+end;
 var
 AuthPage : TInputQueryWizardPage;
 
@@ -157,7 +177,7 @@ begin
     WizardForm.NextButton.Enabled := False;
     // Enable to continue after download successfully, save the remote file automatically
     WizardForm.NextButton.Enabled :=
-      DwinsHs_ReadRemoteURL('https://www.gigabyte.com/WebPage/332/images/B18.0206.1.zip', 'My_App', rmGet,
+      DwinsHs_ReadRemoteURL('https://www.gigabyte.com/WebPage/332/images/B19.0311.1.zip', 'My_App', rmGet,
       Response, Size, ExpandConstant('{tmp}') + '\SDK.zip', @OnRead) = READ_OK;
     Downloaded := WizardForm.NextButton.Enabled;
   end;
@@ -173,6 +193,7 @@ end;
 
 procedure InitializeWizard;
 begin
+  InitializeWizard0
   InitializeWizard1
   InitializeWizard2
   InitializeWizard3
